@@ -1,19 +1,20 @@
 import React from "react";
-import logo from "./icon.png";
+import logo from "./images/icon.png";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <div className="shadow-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-4">
-        <div className="flex items-center">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px4-4 sm:p-8">
+        <Link to="/" className="flex items-center">
           <img className="h-10" src={logo} alt="" />
           <p className="text-2xl font-bold text-red-500">miBnB</p>
-        </div>
+        </Link>
 
-        <div className="flex items-center rounded-full border border-gray-300 py-2 pr-4 pl-6 shadow-md">
+        <Link to="/" className="hidden lg:flex items-center rounded-full border border-gray-300 py-2 pr-4 pl-6 shadow-md">
           <p className="border-r border-gray-300 pr-4">Qualquer lugar</p>
-          <p className="border-r border-gray-300 px-4">Semana</p>
-          <p className="px-4">Hóspedes</p>
+          <p className="border-r border-gray-300 px-4">Qualquer Semana</p>
+          <p className="px-4">Hóspedes?</p>
           <div className="rounded-full bg-red-400 p-2 text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -30,9 +31,9 @@ const Header = () => {
               />
             </svg>
           </div>
-        </div>
+        </Link>
 
-        <div className="flex items-center rounded-full border border-gray-300 py-2 pr-4 pl-6 shadow-md gap-2">
+        <Link to = "/login" className="flex items-center rounded-full border border-gray-300 py-2 pr-4 pl-6 shadow-md gap-2">
 
 
           <svg
@@ -60,8 +61,8 @@ const Header = () => {
               clipRule="evenodd"
               />
           </svg>
-          <p>Amitay XYZ</p>
-        </div>
+          <p className="sm:max-w-none max-w-32 truncate">Amitay XYZ</p>
+        </Link>
       </div>
     </div>
   );
