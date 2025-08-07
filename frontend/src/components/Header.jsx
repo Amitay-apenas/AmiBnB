@@ -2,9 +2,10 @@ import React from "react";
 import logo from "./images/icon.png";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({user}) => {
+
   return (
-    <div className="shadow-md">
+    <div className="shadow-md ">
       <div className="mx-auto flex max-w-7xl items-center justify-between px4-4 sm:p-8">
         <Link to="/" className="flex items-center">
           <img className="h-10" src={logo} alt="" />
@@ -33,7 +34,7 @@ const Header = () => {
           </div>
         </Link>
 
-        <Link to = "/login" className="flex items-center rounded-full border border-gray-300 py-2 pr-4 pl-6 shadow-md gap-2">
+        <Link to = {user ? "/profile" : "/login"} className="flex items-center rounded-full border border-gray-300 py-2 pr-4 pl-6 shadow-md gap-2">
 
 
           <svg
@@ -61,7 +62,9 @@ const Header = () => {
               clipRule="evenodd"
               />
           </svg>
-          <p className="sm:max-w-none max-w-32 truncate">Amitay XYZ</p>
+
+          {user ? <p className="sm:max-w-none max-w-32 truncate">{user.name}</p> : <></>}
+
         </Link>
       </div>
     </div>

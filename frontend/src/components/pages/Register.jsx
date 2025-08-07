@@ -1,44 +1,34 @@
 import { Link, Navigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 
-const Login = ({user, setUser}) => {
+const Register = ({setUser}) => {
   const [email, setEmail] = useState();
+  const [name, setName] = useState();
   const [password, setPassword] = useState();
   const [redirect, setRedirect] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      if( email && password){
-        const {data: userDoc } = await axios.post("http://localhost:3000/users/login", {
-          email,
-          password,
-        });
-
-        setUser(userDoc);
-        setRedirect(true);
-      }else{
-        alert("Voce precisa preencher o email e a senha")
-      }
-      
-    } catch (error) {
-      alert("erro ao logar" + error);
-    }
-
-
     
   };
 
-  if(redirect || user ) return <Navigate to="/"/>
+  if(redirect) return <Navigate to="/"/>
 
   return (
     <section className="flex items-center">
       <div className="mx-auto flex w-full max-w-7xl max-w-96 flex-col items-center gap-4">
-        <h1 className="text-3xl font-bold">Faça seu login</h1>
+        <h1 className="text-3xl font-bold">Faça seu Cadastro</h1>
 
         <form className="flex w-full flex-col gap-2" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            className="w-full rounded-full border border-gray-300 px-4 py-2 shadow-md"
+            placeholder="Digite seu email"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
           <input
             type="email"
             className="w-full rounded-full border border-gray-300 px-4 py-2 shadow-md"
@@ -56,13 +46,13 @@ const Login = ({user, setUser}) => {
           />
 
           <button className="w-full cursor-pointer rounded-full border border-gray-300 bg-red-500 px-4 py-2 font-bold text-white shadow-md">
-            Login
+            Registrar
           </button>
         </form>
         <p>
-          Ainda não tem conta?{" "}
-          <Link to="/register" className="font-semibold underline">
-            Registre-se aqui!
+          Ja tem uma conta?{" "}
+          <Link to="/login" className="font-semibold underline">
+            Logue aqui!
           </Link>
         </p>
       </div>
@@ -70,4 +60,4 @@ const Login = ({user, setUser}) => {
   );
 };
 
-export default Login;
+export default Register;
